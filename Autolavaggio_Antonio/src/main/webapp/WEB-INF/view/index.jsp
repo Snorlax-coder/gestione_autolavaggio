@@ -1,31 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <link rel="stylesheet" type="text/css" href="css/stile.css">
 <meta charset="ISO-8859-1">
 <title>Autolavaggio</title>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-<style>
-  table, tr,td{
-  border:1px solid black;
-  
-  text-align: center;
-  }
-</style>
-<center>
-<table>
-<th colspan=6><a href="/index">HOME</a></th>
-<tr>
-	<td><a href="/giornaliero">GIORNALIERO</a></td>     
-	<td><a href="/nuovaSquadra">SQUADRA</a></td>
-	<td><a href="/nuovoOperaio">NUOVO OPERAIO</a></td>
-	<td><a href="/nuovaLav">LAVORAZIONI</a></td>
-	<td><a href="/nuovoCliente">CLIENTE</a></td>
-	<td><a href="/nuovo_veicolo">VEICOLO</a></td>
-</tr>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/index">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/giornaliero">GIORNALIERO</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/nuovaSquadra">SQUADRA</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="/nuovoOperaio">NUOVO OPERAIO</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="/nuovaLav">LAVORAZIONI</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="/nuovoCliente">CLIENTE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="/nuovo_veicolo">VEICOLO</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-</table>
-</center>
+
+
+
 </body>
 </html>
