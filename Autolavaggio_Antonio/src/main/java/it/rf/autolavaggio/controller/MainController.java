@@ -150,23 +150,27 @@ public class MainController {
 	
 	
 	 @PostMapping(value = "/insertSquadra")
-	    public String insertSquadra(@RequestParam(value = "operaio") List<String> operaioCf,HttpSession session) {
-	        Integer a;
-	        Integer b;
-	        
-	        ArrayList <Operaio> listaScelta =(ArrayList <Operaio>) this.service3.creaLista();
-	        
-		 	a=this.service7.insertFormata(operaioCf);
-	        
-		 	ArrayList <Operaio> listaSquadra=this.service7.squadraAttiva();
-		 	
-		 	b=this.service6.numSq();
-		 	
-		 	 session.setAttribute("tabella1", listaScelta);
-		 	 session.setAttribute("tabella2", listaSquadra);
-		 	 session.setAttribute("verifica", a);
-		 	session.setAttribute("numero", b);
-	        return "nuovaSquadra";
+	 public String insertSquadra(@RequestParam(value = "operaio", required = false) List<String> operaioCf,HttpSession session) {
+         Integer a;
+         Integer b;
+
+         if (operaioCf == null || operaioCf.isEmpty()) {
+             // Nessuna checkbox selezionata, gestisci la situazione di conseguenza
+             session.setAttribute("verifica", -1);
+         }
+         ArrayList <Operaio> listaScelta =(ArrayList <Operaio>) this.service3.creaLista();
+
+          a=this.service7.insertFormata(operaioCf);
+
+          ArrayList <Operaio> listaSquadra=this.service7.squadraAttiva();
+
+          b=this.service6.numSq();
+
+           session.setAttribute("tabella1", listaScelta);
+           session.setAttribute("tabella2", listaSquadra);
+           session.setAttribute("verifica", a);
+          session.setAttribute("numero", b);
+         return "nuovaSquadra";
 	    }
 		 
  
@@ -193,22 +197,26 @@ public class MainController {
     }
 	
 	 @PostMapping(value = "/insertOrdine")
-	    public String insertOrdine(@RequestParam(value = "ordine") List <Integer> listaCodiceLavorazione , String targa,HttpSession session) {
-			Integer b,a;
-		     b=this.service8.codMax();
-		     a=this.service8.insertEseguita(listaCodiceLavorazione, targa);
-		     ArrayList <Lavorazione> lista =(ArrayList <Lavorazione>) this.service2.creaLista();    
-			 ArrayList <RecuperoSegretariaDTO> listaAttive=(ArrayList <RecuperoSegretariaDTO>)this.service8.lavorazioniAttive();
-			 	
-			 	
-			 	
-			 	session.setAttribute("tabella1", lista);
-			 	session.setAttribute("tabella2", listaAttive);
-			 	session.setAttribute("verifica", a); 
-			 	session.setAttribute("numero", b);
-	        return "HomeSegretaria";
+	   public String insertOrdine(@RequestParam(value = "ordine",required = false) List <Integer> listaCodiceLavorazione , String targa,HttpSession session) {
+         Integer b,a;
+         if (listaCodiceLavorazione == null || listaCodiceLavorazione.isEmpty()) {
+             // Nessuna checkbox selezionata, gestisci la situazione di conseguenza
+             session.setAttribute("verifica", -1);
+         }
+          b=this.service8.codMax();
+          a=this.service8.insertEseguita(listaCodiceLavorazione, targa);
+          ArrayList <Lavorazione> lista =(ArrayList <Lavorazione>) this.service2.creaLista();
+          ArrayList <RecuperoSegretariaDTO> listaAttive=(ArrayList <RecuperoSegretariaDTO>)this.service8.lavorazioniAttive();
+
+
+
+              session.setAttribute("tabella1", lista);
+              session.setAttribute("tabella2", listaAttive);
+              session.setAttribute("verifica", a); 
+              session.setAttribute("numero", b);
+         return "HomeSegretaria";
 	    }
-		 
+	
 
 	 
 	@GetMapping(path = "/giornaliero")

@@ -95,7 +95,7 @@
 </tr>
 	
 <% } }%>
-<input type="submit" value="CREA LA SQUADRA" >
+<tr><td colspan="4"><input type="submit" value="CREA LA SQUADRA" ></td></tr>
 </form>
 
 
@@ -134,15 +134,24 @@
 <% } }%>
 
 
-</tbody>
-</table>
 
+ <% Integer c=(Integer)session.getAttribute("verifica");
 
-
-
-
+   if ( c != null) {
+       if (c == 1) {
+%>
+<tr><td>
+      <%="NESSUN OPERAIO SELEZONATO!!!"%>
 <%
+ } else if (c == 0) {
+%>
+     <%="Operatori inseriti con successo!"%>
 
+	
+<%  }
+}%>
+</td></tr>
+   <% 
 request.getSession(false);
 
 // Verifica se la sessione esiste prima di invalidarla
@@ -150,12 +159,12 @@ if (session != null) {
 // Invalida la sessione
 session.invalidate();
 }
-   
+
    %>
 
 
-
-
+</tbody>
+</table>
 
 
 </body>

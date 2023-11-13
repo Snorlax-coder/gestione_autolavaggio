@@ -67,11 +67,22 @@
 
 
 
+    <table class="table table-bordered">
 
-<table align=center  height = '500px' width = '1000px'>
 
-<tr ><th colspan=4>OPERAI :</th> </tr>
-<tr><td>NOME</td> <td>COGNOME</td><td>CODICE FISCALE</td></tr>
+
+  <thead class="thead-light">
+    <tr>
+      <th colspan="4" style="color: darkblue;">OPERAIO :</th>
+    </tr>
+    <tr>
+      <th scope="col" style="color: blue;">NOME</th>
+      <th scope="col" style="color: blue;">COGNOME</th>
+      <th scope="col" style="color: blue;">CODICE FISCALE</th>
+      
+    </tr>
+  </thead>
+  <tbody class="table-hover">
    <% ArrayList<Operaio> lista=(ArrayList<Operaio>)session.getAttribute("lista");
    if(lista!=null){
    for(Operaio o: lista){
@@ -89,48 +100,44 @@
 <tr>
 <td colspan=4>
 <form action="/insertOperaio" method="post">
- 	  NOME:<br><input type=text name="nome" placeholder="inserisci il nome" required /> <br>  
-      COGNOME:<br><input type=text name="cognome" placeholder="inserisci il cognome" required /> <br>      
-     CODICE FISCALE:<br><input type=text name="cf" placeholder="inserisci il codice fiscale" required /> <br>
-     <input type=submit value=REGISTRA ><br>
+ 	  NOME:<input type=text name="nome" placeholder="inserisci il nome" required />   
+      COGNOME:<input type=text name="cognome" placeholder="inserisci il cognome" required />       
+     CODICE FISCALE:<input type=text name="cf" placeholder="inserisci il codice fiscale" required /> 
+     <input type=submit value=REGISTRA >
 
 </form>
-    
-     <tr>        
-       <th colspan="4">
-   
-   <% Integer a=(Integer)session.getAttribute("verifica");
-   
-   if ( a != null) {
-       if (a == 1) {
-%>
+            <% Integer a=(Integer)session.getAttribute("verifica");
+            if (a != null) {
+                if (a == 0) { %>
+                 <tr>
+      			  <th colspan="4">
+
+
      <%="Operaio inserito"%>
 <%
  } else if (a == 0) {
 %>
-     <%="L'operaio è già presente"%>
-<%
- }
-}
-request.getSession(false);
+     <%="L'operaio è già stato registrato"%>          
+                    </th>
+    </tr>
+    <% } }
+             
+            
+             request.getSession(false);
 
-// Verifica se la sessione esiste prima di invalidarla
-if (session != null) {
-// Invalida la sessione
-session.invalidate();
-}
-   
-   %>
-   
-   </th>
-  </tr>
-    
-   
-   
-   
-   
-   
+            // Verifica se la sessione esiste prima di invalidarla
+            if (session != null) {
+                // Invalida la sessione
+                session.invalidate();
+                
+            }%>
+      
+</tbody>
 </table>
+
+
+
+
 
 </body>
 </html>

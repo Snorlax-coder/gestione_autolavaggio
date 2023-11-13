@@ -157,15 +157,17 @@
    if ( c != null) {
        if (c == 1) {
 %>
-     <%="ordine effettuato"%>
+	<tr><td>
+     <%="ERRORE NELLA SCELTA SELEZIONA ALMENO UNA LAVORAZIONE!!!!"%>
 <%
  } else if (c == 0) {
 %>
-     <%=""%>
+     <%="Ordine Inserito"%>
 <%
  }
-}
-request.getSession(false);
+}%>
+</td></tr>
+<% request.getSession(false);
 
 // Verifica se la sessione esiste prima di invalidarla
 if (session != null) {

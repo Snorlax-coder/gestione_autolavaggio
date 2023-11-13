@@ -100,8 +100,8 @@
 <td colspan=4>
 <form action="/insertCliente" method="post">
  	  NOME:<input type=text name="nome" placeholder="inserisci il nome" required /> 
-      COGNOME:<input type=text name="cognome" placeholder="inserisci il cognome" required />       
-     CODICE FISCALE:<input type=text name="cf" placeholder="inserisci il codice fiscale" required />
+      COGNOME:<input type=text name="cognome" placeholder="inserisci il cognome" required />   
+     CODICE FISCALE:<input type=text name="cf" placeholder="inserisci il codice fiscale" required /> 
      <input type=submit value=REGISTRA >
 
 </form>
