@@ -8,6 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<style>
+        .navbar {
+            color: blue; /* Cambia il colore di sfondo della navbar */
+            color: #ffffff; /* Cambia il colore del testo della navbar */
+        }
+
+        .navbar-nav .nav-link {
+            color: blue; /* Cambia il colore dei link nella navbar */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: red; /* Cambia il colore dei link al passaggio del mouse nella navbar */
+        }
+</style>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -28,16 +43,16 @@
           <a class="nav-link" href="/nuovaSquadra">SQUADRA</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="/nuovoOperaio">NUOVO OPERAIO</a>
+          <a class="nav-link " href="/nuovoOperaio">NUOVO OPERAIO</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="/nuovaLav">LAVORAZIONI</a>
+          <a class="nav-link " href="/nuovaLav">LAVORAZIONI</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="/nuovoCliente">CLIENTE</a>
+          <a class="nav-link " href="/nuovoCliente">CLIENTE</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="/nuovo_veicolo">VEICOLO</a>
+          <a class="nav-link " href="/nuovo_veicolo">VEICOLO</a>
         </li>
       </ul>
     </div>
