@@ -5,15 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/stile.css">
+
     <meta charset="ISO-8859-1">
     <title>Insert title here</title>
-    <style>
-        table, tr, td {
-            border: 1px solid black;
-            text-align: center;
-        }
-    </style>
+
 </head>
 <body>
 

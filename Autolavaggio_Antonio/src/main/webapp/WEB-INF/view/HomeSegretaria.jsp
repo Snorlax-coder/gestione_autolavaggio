@@ -9,18 +9,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/stile.css">
+
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-<style>
-  table, tr,td{
-  border:1px solid black;
-  
-  text-align: center;
-  }
-</style>
+
 
 <table align=center  height = '500px' width = '1000px'>
 <th colspan=4><a href="/index">HOME</a></th>
