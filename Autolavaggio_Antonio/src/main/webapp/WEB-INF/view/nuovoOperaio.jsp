@@ -107,10 +107,12 @@
 
 </form>
             <% Integer a=(Integer)session.getAttribute("verifica");
-            if (a != null) {
-                if (a == 0) { %>
-                 <tr>
-      			  <th colspan="4">
+            if (a != null) {%>
+            <tr>
+      		 <th colspan="4">
+            
+                <% if (a == 1) { %>
+                 
 
 
      <%="Operaio inserito"%>
@@ -118,9 +120,11 @@
  } else if (a == 0) {
 %>
      <%="L'operaio è già stato registrato"%>          
-                    </th>
-    </tr>
-    <% } }
+   
+    <% } %> 
+    </th>
+    </tr> 
+    <% } 
              
             
              request.getSession(false);

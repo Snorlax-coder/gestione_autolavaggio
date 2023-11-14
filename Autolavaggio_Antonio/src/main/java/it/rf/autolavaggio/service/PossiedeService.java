@@ -36,10 +36,10 @@ public class PossiedeService {
 	
 	
 	public Integer insertVeicolo(Veicolo v, String cf) {
-	    Optional<Veicolo> veicolo = this.vrepo.findById(v.getnTelaio());
+	    Optional<Veicolo> veicolo = this.vrepo.findById(v.getnTelaio()); //==
 
 	    if (veicolo.isPresent()) {
-	        return 0; // Veicolo già presente
+	        return 0;//==VEICOLO GIà REGISTRATO
 	    } else {
 	        Optional<Cliente> cliente = this.crepo.findById(cf);
 
@@ -49,15 +49,15 @@ public class PossiedeService {
 	            Possiede pos = new Possiede();
 	            pos.setCliente(c);
 	            pos.setVeicolo(v);
-	            pos.setDataRegistrazione(new Date(System.currentTimeMillis())); // Set current date
+	            pos.setDataRegistrazione(new Date(System.currentTimeMillis())); 
 
 	            this.vrepo.save(v);
 	            this.prepo.save(pos);
- // Salva l'associazione in Possiede
 
-	            return 1; // Successo
+
+	            return 1; 
 	        } else {
-	            return 2; // Cliente non trovato
+	            return 2; 
 	        }
 	    }
 	}

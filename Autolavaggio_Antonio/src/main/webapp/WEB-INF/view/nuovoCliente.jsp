@@ -106,10 +106,11 @@
 
 </form>
             <% Integer a=(Integer)session.getAttribute("verifica");
-            if (a != null) {
-                if (a == 0) { %>
-                 <tr>
+            if (a != null) { %>
+            <tr>
       			  <th colspan="4">
+               <%  if (a == 1) { %>
+                 
 
 
      <%="Cliente inserito"%>

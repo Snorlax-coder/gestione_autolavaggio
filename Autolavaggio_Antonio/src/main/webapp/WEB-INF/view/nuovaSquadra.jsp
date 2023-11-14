@@ -137,10 +137,11 @@
 
  <% Integer c=(Integer)session.getAttribute("verifica");
 
-   if ( c != null) {
-       if (c == 1) {
+   if ( c != null) {%>
+		<tr><td>
+       <%if (c == 1) {
 %>
-<tr><td>
+
       <%="NESSUN OPERAIO SELEZONATO!!!"%>
 <%
  } else if (c == 0) {
@@ -148,10 +149,10 @@
      <%="Operatori inseriti con successo!"%>
 
 	
-<%  }
-}%>
+<%  } %>
+
 </td></tr>
-   <% 
+<%} 
 request.getSession(false);
 
 // Verifica se la sessione esiste prima di invalidarla

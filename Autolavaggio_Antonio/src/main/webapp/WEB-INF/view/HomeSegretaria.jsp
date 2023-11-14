@@ -76,7 +76,7 @@
 
   <thead class="thead-light">
     <tr>
-      <th colspan="4" style="color: darkblue;">CREA ORDINE <%= a+1 %> :</th>
+      <th colspan="4" style="color: darkblue;">CREA ORDINE <%= a %> :</th>
     </tr>
     <tr>
       <th scope="col" style="color: blue;">LAVORAZIONE</th>
@@ -163,11 +163,17 @@
  } else if (c == 0) {
 %>
      <%="Ordine Inserito"%>
-<%
- }
-}%>
+
+ 
+ <%
+ } else if (c == 2) {
+%>
+     <%="La targa non è registrata,"%><a href="/nuovo_veicolo"><%= "Registrala ora." %></a>
+<% }%>
+
 </td></tr>
-<% request.getSession(false);
+<% }
+ request.getSession(false);
 
 // Verifica se la sessione esiste prima di invalidarla
 if (session != null) {

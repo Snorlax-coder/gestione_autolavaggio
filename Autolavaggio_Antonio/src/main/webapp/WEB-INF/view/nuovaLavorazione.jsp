@@ -107,8 +107,7 @@
 </form>	
 
 
-</tbody>
-</table>
+
 
 
     
@@ -116,8 +115,9 @@
    
    <% Integer a=(Integer)session.getAttribute("verifica");
    
-   if ( a != null) {
-       if (a == 1) {
+   if ( a != null) {%>
+	   <tr><td>
+       <% if (a == 1) {
 %>
      <%="Lavorazione inserita"%>
 <%
@@ -125,7 +125,9 @@
 %>
      <%="La lavorazione  è già presente"%>
 <%
- }
+ }%></td>
+  </tr>
+  <% 
 }
 request.getSession(false);
 
@@ -137,14 +139,12 @@ session.invalidate();
    
    %>
    
-   </th>
-  </tr>
+   
     
    
    
    
-   
-   
+</tbody>
 </table>
 
 </body>

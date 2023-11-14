@@ -107,10 +107,11 @@
 
    
             <% Integer a=(Integer)session.getAttribute("verifica");
-            if (a != null) {
-                if (a == 0) { %>
-                 <tr>
+            if (a != null) {%>
+            <tr>
       			  <th colspan="4">
+                <%if (a == 0) { %>
+                 
                     <%= "Veicolo è già presente" %>
                 <% } else if (a == 2) { %>
                     <%= "Il cliente non è presente" %> <a href="/nuovoCliente">Registralo ora</a>
@@ -125,7 +126,7 @@
                 // Invalida la sessione
                 session.invalidate();%>
                 
-                    </th>
+   </th>
     </tr>
                 
            <%  } %>

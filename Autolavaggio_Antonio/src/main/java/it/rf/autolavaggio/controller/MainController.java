@@ -35,13 +35,14 @@ import jakarta.transaction.Transactional;
 @Controller
 public class MainController {
 
+
+
 	@Autowired
-	private ClienteService service4;
+	private LavorazioneService service2;
 	@Autowired
 	private OperaioService service3;
 	@Autowired
-	private LavorazioneService service2;
-
+	private ClienteService service4;
 	@Autowired
 	private PossiedeService service5;
 	@Autowired
@@ -51,7 +52,10 @@ public class MainController {
 	@Autowired
 	private EseguitaService service8;
 	
-
+	
+	//METODO PER LA WEBAPP DEL VEICOLO
+	//TRAMITE LINK
+	
 	@PostMapping(value = "/insertVeicolo")
 	public String insertVeicolo(@ModelAttribute Veicolo v, @RequestParam String cf, HttpSession session) {
 	    // ...
@@ -61,11 +65,12 @@ public class MainController {
 	    session.setAttribute("listapos", lp);
 	    session.setAttribute("verifica", a);
 
-	    return "nuovo_veicolo";
+	    return "redirect:/nuovo_veicolo";
 	}
 
 
-		 
+	//METODO PER LA WEBAPP DEL VEICOLO
+	//TRAMITE LINK		 
  
 	
 	@GetMapping(path = "/nuovo_veicolo")
@@ -75,6 +80,9 @@ public class MainController {
         session.setAttribute("listapos", lp);
         return "nuovo_veicolo";
     }
+	
+	//METODO PER LA WEBAPP DELL'INDEX
+	//TRAMITE LINK
 	@GetMapping(path = "/index")
     public String  home()
     {
@@ -82,7 +90,8 @@ public class MainController {
         return "index";
     }
 	
-
+	//METODO PER LA WEBAPP DELLA LAVORAZIONE
+	//TRAMITE OPERAZIONE
 	
 	@PostMapping(value = "/insertLavorazione")
     public String insertLavorazione(@ModelAttribute Lavorazione l, HttpSession session) {
@@ -91,10 +100,11 @@ public class MainController {
         ArrayList <Lavorazione> lista =(ArrayList <Lavorazione>) this.service2.creaLista();
         session.setAttribute("lista", lista);
 		session.setAttribute("verifica", a);
-              return "nuovaLavorazione";
+              return "redirect:/nuovaLav";
 			}
 		 
- 
+	//METODO PER LA WEBAPP DELLA LAVORAZIONE
+	//TRAMITE LINK
 	
 	@GetMapping(path = "/nuovaLav")
     public String  nuova_l( HttpSession session)
@@ -105,7 +115,8 @@ public class MainController {
     }
 	
 	
-	
+	//METODO PER LA WEBAPP DELL'OPERAIO
+	//TRAMITE OPERAZIONE
 	@PostMapping(value = "/insertOperaio")
     public String insertOperaio(@ModelAttribute Operaio o, HttpSession session) {
         Integer a;
@@ -113,10 +124,11 @@ public class MainController {
         ArrayList <Operaio> l =(ArrayList <Operaio>) this.service3.creaLista();
         session.setAttribute("lista", l);
 		session.setAttribute("verifica", a);
-              return "nuovoOperaio";
+              return "redirect:/nuovoOperaio";
 			}
 		 
- 
+	//METODO PER LA WEBAPP DELL'OPERAIO
+	//TRAMITE LINK 
 	
 	@GetMapping(path = "/nuovoOperaio")
     public String  nuovoOperaio( HttpSession session)
@@ -126,7 +138,8 @@ public class MainController {
         return "nuovoOperaio";
     }
 	
-	
+	//METODO PER LA WEBAPP DEL CLIENTE
+	//TRAMITE OPERAZIONE
 	
 	@PostMapping(value = "/insertCliente")
     public String insertCliente(@ModelAttribute Cliente c, HttpSession session) {
@@ -135,11 +148,12 @@ public class MainController {
         ArrayList <Cliente> l =(ArrayList <Cliente>) this.service4.creaLista();
         session.setAttribute("lista", l);
 		session.setAttribute("verifica", a);
-              return "nuovoCliente";
+              return "redirect:/nuovoCliente";
 			}
 		 
  
-	
+	//METODO PER LA WEBAPP DEL CLIENTE
+	//TRAMITE LINK
 	@GetMapping(path = "/nuovoCliente")
     public String  nuovoCliente( HttpSession session)
     {
@@ -148,6 +162,9 @@ public class MainController {
         return "nuovoCliente";
     }
 	
+	
+	//METODO PER LA WEBAPP DELLA SQUADRA
+	//TRAMITE OPERAZIONE
 	
 	 @PostMapping(value = "/insertSquadra")
 	 public String insertSquadra(@RequestParam(value = "operaio", required = false) List<String> operaioCf,HttpSession session) {
@@ -170,10 +187,11 @@ public class MainController {
            session.setAttribute("tabella2", listaSquadra);
            session.setAttribute("verifica", a);
           session.setAttribute("numero", b);
-         return "nuovaSquadra";
+         return "redirect:/nuovaSquadra";
 	    }
 		 
- 
+		//METODO PER LA WEBAPP DELLA SQUADRA
+		//TRAMITE LINK
 	
 	@GetMapping(path = "/nuovaSquadra")
     public String  nuovaSquadra( HttpSession session)
@@ -214,7 +232,7 @@ public class MainController {
               session.setAttribute("tabella2", listaAttive);
               session.setAttribute("verifica", a); 
               session.setAttribute("numero", b);
-         return "HomeSegretaria";
+         return "redirect:/giornaliero";
 	    }
 	
 

@@ -58,7 +58,7 @@ public class EseguitaService {
 				a=0;
 			}
 			
-			
+			a++;
 			return a;
 		}
 		
@@ -75,7 +75,9 @@ public class EseguitaService {
 	
 
 	public Integer insertEseguita(List<Integer> listaCodiceLavorazione , String targa ) {
-		
+		Optional<Veicolo> veicolo= this.vrepo.findById(targa);
+   	 if(veicolo.isPresent()){
+   		 Veicolo v=veicolo.get();
 		if (listaCodiceLavorazione != null && !listaCodiceLavorazione.isEmpty() && targa != null ) {
 			
 			Integer cL=this.erepo.findMaxCodiceOrdine();
@@ -85,7 +87,7 @@ public class EseguitaService {
         		cL++;
         	}
 			
-            List<Veicolo> veicolo= new ArrayList<>();
+            
             List<Lavorazione> listaLavorazione = new ArrayList<>();
             for (int cdL : listaCodiceLavorazione ) {
                 
@@ -96,7 +98,8 @@ public class EseguitaService {
             }
             for(Lavorazione l : listaLavorazione ) {
             	
-            	 Veicolo v= this.vrepo.getVeicoloByTarga(targa);
+            	 
+            	 
             	Integer codSq=this.srepo.findMaxCodiceSquadra();
             	Squadra squadra=this.srepo.getSquadraByCodiceSquadra(codSq);
             	
@@ -111,17 +114,19 @@ public class EseguitaService {
  	            
  	            
  	            this.erepo.save(form);
- 	            
+            	 }
             	
-            }
+            
 
             return 0;
+		}else {
+			return 1;
+		}
         } else {
             
-            return 1;
+            return 2;
         }
 	}
 
-
-  
 }
+  
