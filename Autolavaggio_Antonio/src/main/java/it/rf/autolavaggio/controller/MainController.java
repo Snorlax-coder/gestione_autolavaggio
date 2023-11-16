@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.rf.autolavaggio.model.Cliente;
+import it.rf.autolavaggio.model.Eseguita;
 import it.rf.autolavaggio.model.Lavorazione;
 import it.rf.autolavaggio.model.Operaio;
 import it.rf.autolavaggio.model.Possiede;
@@ -57,7 +58,7 @@ public class MainController {
 	//TRAMITE LINK
 	
 	@PostMapping(value = "/insertVeicolo")
-	public String insertVeicolo(@ModelAttribute Veicolo v, @RequestParam String cf, HttpSession session) {
+	public String insertVeicolo( @ModelAttribute Veicolo v, @RequestParam String cf, HttpSession session) {
 	    // ...
 	    Integer a = this.service5.insertVeicolo(v, cf);
 
@@ -214,6 +215,7 @@ public class MainController {
         return "nuovaSquadra";
     }
 	
+	
 	 @PostMapping(value = "/insertOrdine")
 	   public String insertOrdine(@RequestParam(value = "ordine",required = false) List <Integer> listaCodiceLavorazione , String targa,HttpSession session) {
          Integer b,a;
@@ -279,6 +281,28 @@ public String  evadiLink( HttpSession session)
     return "Operaio";
 }
 	
+	
+	
+	
+ 	@PostMapping(value = "/visualizzaStorico")
+    public String storico(@RequestParam ("cfCliente")String cf,HttpSession session) {
+ 		Cliente c=(Cliente)this.service4.findById(cf);
+ 		
+ 		ArrayList <Veicolo> listaV=this.service5.ListaVeicoliCliente(c);
+ 		ArrayList <Eseguita> listaE=this.service8.LavorazioniEseguiteSuUnVeicolo(listaV, c);
+ 		Float spese=this.service8.calcoloSpese(listaE);
+ 		
+ 		
+ 		session.setAttribute("listaSpese", spese);
+ 		session.setAttribute("listaVeicoli", listaV);
+ 		session.setAttribute("listaOrdini", listaE);
+ 		session.setAttribute("cliente", c);
+        return "StoricoCliente";
+    }
+	 
+
+ 
+
 	
 
 }

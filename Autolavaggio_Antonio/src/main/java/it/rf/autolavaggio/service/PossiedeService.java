@@ -37,16 +37,48 @@ public class PossiedeService {
 	
 	public Integer insertVeicolo(Veicolo v, String cf) {
 	    Optional<Veicolo> veicolo = this.vrepo.findById(v.getnTelaio()); //==
-
+	    
+	    //blocco 1 veicolo già registrato
 	    if (veicolo.isPresent()) {
-	        return 0;//==VEICOLO GIà REGISTRATO
+	        
+	        Optional<Possiede> posDaMod= this.prepo.trovaPossiede(v);
+	        Possiede possiedeDaMod= new Possiede();
+	        possiedeDaMod=posDaMod.get(); 
+	        possiedeDaMod.setPropAttuale(false);
+	        
+	        Optional<Cliente> clientesw = this.crepo.findById(cf);
+
+	        if (clientesw.isPresent()) {
+	            Cliente c = clientesw.get();
+	           
+	            
+	            Possiede pos = new Possiede();
+	            pos.setPropAttuale(true);
+	            
+	            pos.setCliente(c);
+	            pos.setVeicolo(v);
+	            pos.setDataRegistrazione(new Date(System.currentTimeMillis())); 
+
+	            
+	            this.prepo.save(pos);
+	        }else {
+	        	return 4;//Il nuovo cliente non è registrato
+	        }
+	        
+	    	return 0;//==ok hai cambiato proprietario al veicolo
+	    	
+	    	
+	    	
 	    } else {
 	        Optional<Cliente> cliente = this.crepo.findById(cf);
 
 	        if (cliente.isPresent()) {
 	            Cliente c = cliente.get();
-
+	           
+	            
 	            Possiede pos = new Possiede();
+	            pos.setPropAttuale(true);
+	            
 	            pos.setCliente(c);
 	            pos.setVeicolo(v);
 	            pos.setDataRegistrazione(new Date(System.currentTimeMillis())); 
@@ -63,7 +95,11 @@ public class PossiedeService {
 	}
 
 
-		
+		public ArrayList<Veicolo> ListaVeicoliCliente(Cliente c){
+			ArrayList <Veicolo> listaVeicoli = new ArrayList <Veicolo>();
+			listaVeicoli=(ArrayList <Veicolo>)this.prepo.veicoliDiUnCliente(c);	
+			return listaVeicoli;
+		}
 		
 		
 		

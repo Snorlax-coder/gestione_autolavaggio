@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
-	import="java.util.ArrayList"
+    import="java.util.ArrayList"
     %>
-     <%@ page import="it.rf.autolavaggio.model.Cliente" %>
+    <%@ page import="it.rf.autolavaggio.model.Veicolo" %>
+     <%@ page import="it.rf.autolavaggio.model.Eseguita" %>
+	<%@ page import="it.rf.autolavaggio.model.Cliente" %>
+    
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<style>
+	   <style>
         .navbar {
             color: blue; /* Cambia il colore di sfondo della navbar */
             color: #ffffff; /* Cambia il colore del testo della navbar */
@@ -27,9 +31,9 @@
             color: red; /* Cambia il colore dei link al passaggio del mouse nella navbar */
         }
     </style>
-
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="/index">HOME</a>
@@ -67,90 +71,91 @@
 
 
 
-    <table class="table table-bordered">
+<table class="table table-bordered">
+
+ <%Cliente c=(Cliente)session.getAttribute("cliente"); %> 
+
+   <thead class="thead-light"> 
+     <tr> 
+      <th colspan="5" style="color: darkblue;">STORICO DI <%= c.getNome() %>  <%= c.getCognome() %> </th> 
+    </tr>
+    <tr>
+      <th colspan="5" style="color: darkblue;">LISTA DEI VEICOLI :</th>
+    </tr>
+    
+    <tr>
+      <th scope="col" style="color: blue;">TARGA</th>
+      <th scope="col" style="color: blue;">TELAIO</th>     
+    </tr>
+  </thead>
+  <tbody class="table-hover">
+   <% ArrayList<Veicolo> lista=(ArrayList <Veicolo>)session.getAttribute("listaVeicoli");
+   if(lista!=null && !lista.isEmpty()){
+   for(Veicolo v: lista){
+%>
+<tr>
+	<td><%= v.getTarga() %> </td>
+	<td><%= v.getnTelaio() %> </td>
+</tr>
+	
+<% } }else{%>
+<tr>
+<td>
+<%="IL CLIENTE NON HA MAI REGISTRATO UN VEICOLO" %>
+</td>
+</tr>
+<% } %>
+</tbody>
+</table>
+
+
+<table class="table table-bordered">
 
 
 
   <thead class="thead-light">
     <tr>
-      <th colspan="4" style="color: darkblue;">CLIENTI :</th>
+      <th colspan="5" style="color: darkblue;">LAVORAZIONI EFFETTUATE : </th>
     </tr>
     <tr>
-      <th scope="col" style="color: blue;">NOME</th>
-      <th scope="col" style="color: blue;">COGNOME</th>
-      <th scope="col" style="color: blue;">CODICE FISCALE</th>
-      <th scope="col" style="color: blue;">SELEZIONA</th>
-      
+      <th scope="col" style="color: blue;">DATA</th>
+      <th scope="col" style="color: blue;">TARGA</th>
+      <th scope="col" style="color: blue;">CODICE SQUADRA</th>
+      <th scope="col" style="color: blue;">NOME LAVORAZIONE</th>
+      <th scope="col" style="color: blue;">COSTO</th>
+           
     </tr>
   </thead>
-
-    <tbody class="table-hover">
-   
-        <% ArrayList<Cliente> lista = (ArrayList<Cliente>) session.getAttribute("lista");
-           if (lista != null) {
-               for (Cliente c : lista) {
-        %>
-         <form action="/visualizzaStorico" method="post">
-        <tr>
-            <td><%= c.getNome() %> </td>
-            <td><%= c.getCognome() %> </td>
-            <td><%= c.getCf() %> </td>
-            <td>
-                <input type="hidden" name="cfCliente" value="<%= c.getCf() %>">
-                <input type="submit" value="VISUALIZZA STORICO">
-                  </form>
-            </td>
-        </tr>
-        <% } } %>
-      
-    </tbody>
-
-
-<tr><td colspan=4>INSERISCI UN NUOVO CLIENTE:</td></tr>
-<tr>
-<td colspan=4>
-<form action="/insertCliente" method="post">
- 	  NOME:<input type=text name="nome" placeholder="inserisci il nome" required /> 
-      COGNOME:<input type=text name="cognome" placeholder="inserisci il cognome" required />   
-     CODICE FISCALE:<input type=text name="cf" placeholder="inserisci il codice fiscale" required /> 
-     <input type=submit value=REGISTRA >
-
-</form>
-            <% Integer a=(Integer)session.getAttribute("verifica");
-            if (a != null) { %>
-            <tr>
-      			  <th colspan="4">
-               <%  if (a == 1) { %>
-                 
-
-
-     <%="Cliente inserito"%>
-<%
- } else if (a == 0) {
+  <tbody class="table-hover">
+   <% ArrayList<Eseguita> lista2=(ArrayList <Eseguita>)session.getAttribute("listaOrdini");
+   if(lista2!=null && !lista2.isEmpty()){
+   for(Eseguita e: lista2){
 %>
-     <%="Il cliente è già stato registrato"%>          
-                    </th>
-    </tr>
-    <% } }
-             
-            
-             request.getSession(false);
+<tr>
+	<td><%= e.getDataLavorazione() %> </td>
+	<td><%= e.getVeicolo().getTarga() %> </td>
+	<td><%= e.getSquadra().getCodiceSquadra() %> </td>
+	<td><%= e.getLavorazione().getNome() %> </td>
+	<td><%= e.getLavorazione().getCosto() %> </td>		
+</tr>
+	
+<% } }else{%>
+<tr>
+<td colspan=5>
+<%="IL CLIENTE NON HA ANCORA RICHIESTO UNA LAVORAZIONE" %>
+</td>
+</tr>
+<% } %>
 
-            // Verifica se la sessione esiste prima di invalidarla
-            if (session != null) {
-                // Invalida la sessione
-                session.invalidate();
-                
-            }%>
-      
-
-
-                
-           
-    
-
+<%Float costo=(Float) session.getAttribute("listaSpese"); %>
+<%if(costo!=null) {%>
+<tr><td colspan=5>
+IL CLIENTE HA SPESO IN TOTALE: <%= costo %>  Euro .
+</td></tr>
+<% }%>
 </tbody>
 </table>
+
 
 
 

@@ -70,15 +70,54 @@ public class EseguitaService {
 		
 	}
 	
+	public ArrayList <Eseguita> LavorazioniEseguiteSuUnVeicolo(ArrayList <Veicolo> lista, Cliente c){
+		
+		ArrayList <Eseguita> listaEs=new ArrayList <Eseguita> ();
+		ArrayList <Eseguita> listaF=new ArrayList <Eseguita> ();
+		if(!lista.isEmpty()) {
+		for(Veicolo v: lista) {
+			
+		listaEs=(ArrayList <Eseguita>)this.erepo.lavorazioniCliente(v,c);
+		for(Eseguita e: listaEs) {
+			
+			listaF.add(e);
+			
+		}
+		
+		}
+		
+		
+		return listaF;
+		}
+		else {
+			return null;
+		}
+	}
 	
-	
+	public Float calcoloSpese(ArrayList <Eseguita> lista) {
+	    Float spese = 0f;
+	    
+	    if (lista != null) {
+	        for (Eseguita e : lista) {
+	            Lavorazione lav = e.getLavorazione();
+	            Float costo = lav.getCosto();
+	            spese = spese + costo;
+	        }
+	    }
+
+	    return spese;
+	}
+		
+		
+		
+		
 	
 
 	public Integer insertEseguita(List<Integer> listaCodiceLavorazione , String targa ) {
-		Optional<Veicolo> veicolo= this.vrepo.findById(targa);
+		Optional<Veicolo> veicolo= this.vrepo.getVeicoloByTarga(targa);
    	 if(veicolo.isPresent()){
    		 Veicolo v=veicolo.get();
-		if (listaCodiceLavorazione != null && !listaCodiceLavorazione.isEmpty() && targa != null ) {
+		if (listaCodiceLavorazione != null && !listaCodiceLavorazione.isEmpty() ) {
 			
 			Integer cL=this.erepo.findMaxCodiceOrdine();
         	if(cL==null) {
