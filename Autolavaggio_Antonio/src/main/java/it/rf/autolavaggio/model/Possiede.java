@@ -22,7 +22,9 @@ public class Possiede {
 	@Column
 	private Date dataRegistrazione;
 	
-		
+	@Column
+	private Boolean propAttuale;	
+	
 	@ManyToOne 
 	private Veicolo veicolo;
 	
@@ -31,7 +33,12 @@ public class Possiede {
 	private Cliente cliente;
 
 	
-
+	public Boolean getPropAttuale() {
+		return propAttuale;
+	}
+	public void setPropAttuale(Boolean propAttuale) {
+		this.propAttuale = propAttuale;
+	}
 	
 	public Cliente getCliente() {
 		return cliente;
