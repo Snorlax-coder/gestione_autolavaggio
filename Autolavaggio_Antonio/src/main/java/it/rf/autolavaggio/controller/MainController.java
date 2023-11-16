@@ -148,110 +148,110 @@ public class MainController {
         return "nuovoCliente";
     }
 	
-	
-	 @PostMapping(value = "/insertSquadra")
-	    public String insertSquadra(@RequestParam(value = "operaio") List<String> operaioCf,HttpSession session) {
-	        Integer a;
-	        Integer b;
-	        
-	        ArrayList <Operaio> listaScelta =(ArrayList <Operaio>) this.service3.creaLista();
-	        
-		 	a=this.service7.insertFormata(operaioCf);
-	        
-		 	ArrayList <Operaio> listaSquadra=this.service7.squadraAttiva();
-		 	
-		 	b=this.service6.numSq();
-		 	
-		 	 session.setAttribute("tabella1", listaScelta);
-		 	 session.setAttribute("tabella2", listaSquadra);
-		 	 session.setAttribute("verifica", a);
-		 	session.setAttribute("numero", b);
-	        return "nuovaSquadra";
-	    }
-		 
- 
-	
-	@GetMapping(path = "/nuovaSquadra")
-    public String  nuovaSquadra( HttpSession session)
-    {
-		
-        Integer b;
-        
-        ArrayList <Operaio> listaScelta =(ArrayList <Operaio>) this.service3.creaLista();
-        
-	 	
-        
-	 	ArrayList <Operaio> listaSquadra=(ArrayList <Operaio>)this.service7.squadraAttiva();
-	 	
-	 	b=(Integer)this.service6.numSq();
-	 	
-	 	 session.setAttribute("tabella1", listaScelta);
-	 	 session.setAttribute("tabella2", listaSquadra);
-	 	 
-	 	session.setAttribute("numero", b);
-        return "nuovaSquadra";
-    }
-	
-	 @PostMapping(value = "/insertOrdine")
-	    public String insertOrdine(@RequestParam(value = "ordine") List <Integer> listaCodiceLavorazione , String targa,HttpSession session) {
-			Integer b,a;
-		     b=this.service8.codMax();
-		     a=this.service8.insertEseguita(listaCodiceLavorazione, targa);
-		     ArrayList <Lavorazione> lista =(ArrayList <Lavorazione>) this.service2.creaLista();    
-			 ArrayList <RecuperoSegretariaDTO> listaAttive=(ArrayList <RecuperoSegretariaDTO>)this.service8.lavorazioniAttive();
-			 	
-			 	
-			 	
-			 	session.setAttribute("tabella1", lista);
-			 	session.setAttribute("tabella2", listaAttive);
-			 	session.setAttribute("verifica", a); 
-			 	session.setAttribute("numero", b);
-	        return "HomeSegretaria";
-	    }
-		 
-
-	 
-	@GetMapping(path = "/giornaliero")
- public String  giornaliero( HttpSession session)
- {
-		Integer b;
-     b=this.service8.codMax();
-     
-     
-     ArrayList <Lavorazione> lista =(ArrayList <Lavorazione>) this.service2.creaLista();    
-	 ArrayList <RecuperoSegretariaDTO> listaAttive=(ArrayList <RecuperoSegretariaDTO>)this.service8.lavorazioniAttive();
-	 	
-	 	
-	 	
-	 	session.setAttribute("tabella1", lista);
-	 	session.setAttribute("tabella2", listaAttive);
-	 	 
-	 	session.setAttribute("numero", b);
-     return "HomeSegretaria";
- }
-	
-	
-		
-	 	@PostMapping(value = "/evadi")
-	    public String evadiLavorazione(@RequestParam("numLavoro") Integer numLavoro,HttpSession session) {
-		 
-		    
-		     this.service8.operaioEvade(numLavoro);  
-			 ArrayList <RecuperoSegretariaDTO> listaAttive=(ArrayList <RecuperoSegretariaDTO>)this.service8.lavorazioniAttive();
-			 	session.setAttribute("tabella2", listaAttive);
-
-	        return "Operaio";
-	    }
-		 
-
-	 
-	@GetMapping(path = "/linkEvadi")
-public String  evadiLink( HttpSession session)
-{
-	 ArrayList <RecuperoSegretariaDTO> listaAttive=(ArrayList <RecuperoSegretariaDTO>)this.service8.lavorazioniAttive();
-	 	session.setAttribute("tabella2", listaAttive);
-    return "Operaio";
-}
+//	
+//	 @PostMapping(value = "/insertSquadra")
+//	    public String insertSquadra(@RequestParam(value = "operaio") List<String> operaioCf,HttpSession session) {
+//	        Integer a;
+//	        Integer b;
+//	        
+//	        ArrayList <Operaio> listaScelta =(ArrayList <Operaio>) this.service3.creaLista();
+//	        
+//		 	a=this.service7.insertFormata(operaioCf);
+//	        
+//		 	ArrayList <Operaio> listaSquadra=this.service7.squadraAttiva();
+//		 	
+//		 	b=this.service6.numSq();
+//		 	
+//		 	 session.setAttribute("tabella1", listaScelta);
+//		 	 session.setAttribute("tabella2", listaSquadra);
+//		 	 session.setAttribute("verifica", a);
+//		 	session.setAttribute("numero", b);
+//	        return "nuovaSquadra";
+//	    }
+//		 
+// 
+//	
+//	@GetMapping(path = "/nuovaSquadra")
+//    public String  nuovaSquadra( HttpSession session)
+//    {
+//		
+//        Integer b;
+//        
+//        ArrayList <Operaio> listaScelta =(ArrayList <Operaio>) this.service3.creaLista();
+//        
+//	 	
+//        
+//	 	ArrayList <Operaio> listaSquadra=(ArrayList <Operaio>)this.service7.squadraAttiva();
+//	 	
+//	 	b=(Integer)this.service6.numSq();
+//	 	
+//	 	 session.setAttribute("tabella1", listaScelta);
+//	 	 session.setAttribute("tabella2", listaSquadra);
+//	 	 
+//	 	session.setAttribute("numero", b);
+//        return "nuovaSquadra";
+//    }
+//	
+//	 @PostMapping(value = "/insertOrdine")
+//	    public String insertOrdine(@RequestParam(value = "ordine") List <Integer> listaCodiceLavorazione , String targa,HttpSession session) {
+//			Integer b,a;
+//		     b=this.service8.codMax();
+//		     a=this.service8.insertEseguita(listaCodiceLavorazione, targa);
+//		     ArrayList <Lavorazione> lista =(ArrayList <Lavorazione>) this.service2.creaLista();    
+//			 ArrayList <RecuperoSegretariaDTO> listaAttive=(ArrayList <RecuperoSegretariaDTO>)this.service8.lavorazioniAttive();
+//			 	
+//			 	
+//			 	
+//			 	session.setAttribute("tabella1", lista);
+//			 	session.setAttribute("tabella2", listaAttive);
+//			 	session.setAttribute("verifica", a); 
+//			 	session.setAttribute("numero", b);
+//	        return "HomeSegretaria";
+//	    }
+//		 
+//
+//	 
+//	@GetMapping(path = "/giornaliero")
+// public String  giornaliero( HttpSession session)
+// {
+//		Integer b;
+//     b=this.service8.codMax();
+//     
+//     
+//     ArrayList <Lavorazione> lista =(ArrayList <Lavorazione>) this.service2.creaLista();    
+//	 ArrayList <RecuperoSegretariaDTO> listaAttive=(ArrayList <RecuperoSegretariaDTO>)this.service8.lavorazioniAttive();
+//	 	
+//	 	
+//	 	
+//	 	session.setAttribute("tabella1", lista);
+//	 	session.setAttribute("tabella2", listaAttive);
+//	 	 
+//	 	session.setAttribute("numero", b);
+//     return "HomeSegretaria";
+// }
+//	
+//	
+//		
+//	 	@PostMapping(value = "/evadi")
+//	    public String evadiLavorazione(@RequestParam("numLavoro") Integer numLavoro,HttpSession session) {
+//		 
+//		    
+//		     this.service8.operaioEvade(numLavoro);  
+//			 ArrayList <RecuperoSegretariaDTO> listaAttive=(ArrayList <RecuperoSegretariaDTO>)this.service8.lavorazioniAttive();
+//			 	session.setAttribute("tabella2", listaAttive);
+//
+//	        return "Operaio";
+//	    }
+//		 
+//
+//	 
+//	@GetMapping(path = "/linkEvadi")
+//public String  evadiLink( HttpSession session)
+//{
+//	 ArrayList <RecuperoSegretariaDTO> listaAttive=(ArrayList <RecuperoSegretariaDTO>)this.service8.lavorazioniAttive();
+//	 	session.setAttribute("tabella2", listaAttive);
+//    return "Operaio";
+//}
 	
 	
 
